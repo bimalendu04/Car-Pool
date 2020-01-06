@@ -7,6 +7,7 @@ namespace CarPooling
     class Program
     {
         public static List<RideList> rideList = new List<RideList>();
+        public static CarPool.VehicleDetails vehicleDetails = new CarPool.VehicleDetails();
         private enum MainMenuAction : int
         {
             offerRide = 1,
@@ -45,7 +46,7 @@ namespace CarPooling
                 }
                 else
                 {
-                    Console.WriteLine("Entered input is not Valid");
+                    Console.WriteLine("Entered input is not Valid.");
                 }
             } while (true);
         }
@@ -126,7 +127,10 @@ namespace CarPooling
                     Console.WriteLine("Invalid Input\n");
                 }
             } while (availableSeatCheck);
-            
+
+            vehicleDetails.setVehicle(typeOfVehicle, seatsAvailableCount);
+
+
             Console.WriteLine("Name");
             string name = Console.ReadLine();
             Console.WriteLine("Phone");
