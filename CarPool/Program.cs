@@ -8,6 +8,8 @@ namespace CarPooling
     {
         public static List<RideList> rideList = new List<RideList>();
         public static CarPool.VehicleDetails vehicleDetails = new CarPool.VehicleDetails();
+        public static CarPool.PoolProviderDetails poolProviderDetails = new CarPool.PoolProviderDetails();
+        public static CarPool.ShowAvailablePools showAvailablePools = new CarPool.ShowAvailablePools();
         private enum MainMenuAction : int
         {
             offerRide = 1,
@@ -128,8 +130,7 @@ namespace CarPooling
                 }
             } while (availableSeatCheck);
 
-            vehicleDetails.setVehicle(typeOfVehicle, seatsAvailableCount);
-
+            int vehicleId = vehicleDetails.setVehicleDetails(typeOfVehicle, seatsAvailableCount);
 
             Console.WriteLine("Name");
             string name = Console.ReadLine();
@@ -138,14 +139,18 @@ namespace CarPooling
             Console.WriteLine("Gender");
             string gender = Console.ReadLine();
 
-            RideList pet = new RideList { source = source, destination = destination, typeOfVehicle = typeOfVehicle, seatsAvailableCount = seatsAvailableCount, riders = new List<Riders>(), name = name, phone = phone, gender = gender };
-            rideList.Add(pet);
+            poolProviderDetails.setPoolDetails(name, phone, gender, source, destination, vehicleId);
+
+
+            //RideList pet = new RideList { source = source, destination = destination, typeOfVehicle = typeOfVehicle, seatsAvailableCount = seatsAvailableCount, riders = new List<Riders>(), name = name, phone = phone, gender = gender };
+            //rideList.Add(pet);
             Console.WriteLine("\nYour request has been posted\n");
         }
 
         private static void requestRide()
         {
-            if (rideList.Count > 0)
+            List<CarPool.PoolProviderDetailsStructure> poolPostList = poolProviderDetails.getList();
+            if (poolPostList.Count > 0)
             {
                 Console.WriteLine("Source");
                 string source = Console.ReadLine();
@@ -158,13 +163,13 @@ namespace CarPooling
                 Console.WriteLine("Gender");
                 string gender = Console.ReadLine();
 
-                displayAvailablePools(source, destination, name, phone, gender);
+                showAvailablePools.displayAvailablePools(source, destination, name, phone, gender);
             }
             else
                 Console.WriteLine("Sorry, no pooling is available currently.\n");
         }
 
-        private static void displayAvailablePools(string source, string destination, string name, string phone, string gender)
+        /*private static void displayAvailablePools(string source, string destination, string name, string phone, string gender)
         {
             int availablePools = 0;
             List<int> indexOfAvailabePool = new List<int>();
@@ -197,7 +202,7 @@ namespace CarPooling
 
             } else
                 Console.WriteLine("Sorry {0}, no vehicle found for your route", name);
-        }
+        }*/
 
 
         private static void showRides()
@@ -219,7 +224,7 @@ namespace CarPooling
             return int.TryParse(Console.ReadLine(), out input);
         }
 
-        private static void displayRiders(RideList ride)
+        /*private static void displayRiders(RideList ride)
         {
             Console.WriteLine("\nSource:{0}\n Destination:{1}\n Type of Vehicle:{2}\n Seats Available:{3}\n Name: {4}\n Phone:{5}\n Gender:{6}\n", ride.source, ride.destination, ride.typeOfVehicle == 2 ? "Two Wheeler" : "Four Wheeler", ride.seatsAvailableCount - ride.riders.Count, ride.name, ride.phone, ride.gender);
             if (ride.riders.Count > 0)
@@ -230,7 +235,7 @@ namespace CarPooling
                     Console.WriteLine(" \n\tName: {0} \n\tPhone: {1} \n\tGender: {2}", rider.name, rider.phone, rider.gender);
                 }
             }
-        }
+        }*/
     }
 
     internal class RideList

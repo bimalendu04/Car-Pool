@@ -4,41 +4,22 @@ using System.Text;
 
 namespace CarPool
 {
-    class VehicleDetails
+    public class VehicleDetails
     {
-        public VehicleList vehicleList = new VehicleList();
-        public string vehicleId;
-        public int typeOfVehicle;
-        public int seatAvailable;
+        public static List<VehicleDetailsStructure> vehicleList = new List<VehicleDetailsStructure>();
 
-        public void setVehicle (int typeOfVehicle, int seatAvailable)
+        public int setVehicleDetails(int typeOfVehicle, int seatsAvailable)
         {
-            string vehicleListCount = vehicleList.getVehicleDetails().Count.ToString();
-            vehicleList.setVehicleDetails(vehicleListCount, typeOfVehicle, seatAvailable);
-            Console.WriteLine("{0} count", vehicleList.getVehicleDetails().Count.ToString());
-        }
-
-    }
-
-    class VehicleList
-    {
-        public static List<VehicleListStructure> vehicleList = new List<VehicleListStructure>();
-        vehicleList.Add(new VehicleListStructure { vehicleId = 0, typeOfVehicle = 2, seatAvailable = 1});
-        public void setVehicleDetails (string id, int typeOfVehicle, int seatAvailable)
-        {
-            vehicleList.Add(new VehicleListStructure { vehicleId = id, typeOfVehicle = typeOfVehicle, seatAvailable = seatAvailable });
-        }
-
-        public List<VehicleListStructure> getVehicleDetails()
-        {
-            return vehicleList;
+            int id = vehicleList.Count;
+            vehicleList.Add(new VehicleDetailsStructure { Id = id, TypeOfVehicle = typeOfVehicle, SeatsAvailable = seatsAvailable });
+            return id;
         }
     }
 
-    internal class VehicleListStructure
+    public class VehicleDetailsStructure
     {
-        public string vehicleId;
-        public int typeOfVehicle;
-        public int seatAvailable;
+        public int Id;
+        public int TypeOfVehicle;
+        public int SeatsAvailable;
     }
 }
