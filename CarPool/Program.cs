@@ -211,7 +211,7 @@ namespace CarPooling
             {
                 foreach (RideList ride in rideList)
                 {
-                    displayRiders(ride);
+                    showAvailablePools. displayRiders(ride);
                 }
             } else
             {
@@ -219,7 +219,7 @@ namespace CarPooling
             }
         }
 
-        private static bool isValidInt(out int input)
+        public bool isValidInt(out int input)
         {
             return int.TryParse(Console.ReadLine(), out input);
         }

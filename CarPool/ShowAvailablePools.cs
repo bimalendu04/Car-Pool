@@ -8,7 +8,7 @@ namespace CarPool
     {
         public List<PoolProviderDetailsStructure> poolProviderDetailsList =  new PoolProviderDetails().getList();
         public List<VehicleDetailsStructure> vehicleDetailsList =  new List<VehicleDetailsStructure>();
-
+        public CarPooling.Program program = new CarPooling.Program();
         public void displayAvailablePools(string source, string destination, string name, string phone, string gender)
         {
             int availablePools = 0;
@@ -29,7 +29,7 @@ namespace CarPool
             {
                 int poolRequest;
                 Console.WriteLine("Enter the no. you want to ride with", availablePools);
-                if (isValidInt(out poolRequest))
+                if (program.isValidInt(out poolRequest))
                 {
                     if (indexOfAvailabePool.Contains(poolRequest))
                     {
@@ -47,9 +47,9 @@ namespace CarPool
                 Console.WriteLine("Sorry {0}, no vehicle found for your route", name);
         }
 
-        private static void displayRiders(PoolProviderDetailsStructure poolProviderDetails)
+        public void displayRiders(PoolProviderDetailsStructure poolProviderDetails)
         {
-            Console.WriteLine("\nSource:{0}\n Destination:{1}\n Type of Vehicle:{2}\n Seats Available:{3}\n Name: {4}\n Phone:{5}\n Gender:{6}\n", ride.source, ride.destination, ride.typeOfVehicle == 2 ? "Two Wheeler" : "Four Wheeler", ride.seatsAvailableCount - ride.riders.Count, ride.name, ride.phone, ride.gender);
+            Console.WriteLine("\nSource:{0}\n Destination:{1}\n Type of Vehicle:{2}\n Seats Available:{3}\n Name: {4}\n Phone:{5}\n Gender:{6}\n", poolProviderDetails.Source, poolProviderDetails.Destination, vehicleDetailsList.Find(x => x.Id.Equals(poolProviderDetails.Vehicle)).TypeOfVehicle == 2 ? "Two Wheeler" : "Four Wheeler", vehicleDetailsList.Find(x => x.Id.Equals(poolProviderDetails.Vehicle)).SeatsAvailable - poolProviderDetails.riders.Count, ride.name, ride.phone, ride.gender);
             if (ride.riders.Count > 0)
             {
                 Console.WriteLine("Riders:");
