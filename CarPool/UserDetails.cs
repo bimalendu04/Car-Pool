@@ -4,10 +4,6 @@ using System.Text;
 
 namespace CarPool
 {
-    class UserDetails
-    {
-    }
-
     public class UserDetailsList
     {
         public static List<UserDetailsStructure> userList = new List<UserDetailsStructure>();
@@ -18,6 +14,18 @@ namespace CarPool
             userList.Add(new UserDetailsStructure { Id = id, Name = name, Phone = phone, Gender = gender });
             return id;
         }
+
+        public List<UserDetailsStructure> getUserList()
+        {
+            return userList;
+        }
+
+        public UserDetailsStructure getUserDetails(int id)
+        {
+            Console.WriteLine("Data {0}", userList.Find(x => x.Id == id));
+            return userList.Find(x => x.Id == id);
+        }
+        
     }
 
     public class UserDetailsStructure
