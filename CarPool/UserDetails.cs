@@ -22,7 +22,6 @@ namespace CarPool
 
         public UserDetailsStructure getUserDetails(int id)
         {
-            Console.WriteLine("Data {0}", userList.Find(x => x.Id == id));
             return userList.Find(x => x.Id == id);
         }
         

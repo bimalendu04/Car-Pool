@@ -168,12 +168,12 @@ namespace CarPooling
 
         private static void showRides()
         {
-            List<CarPool.PoolProviderDetailsStructure> rideList = new List<CarPool.PoolProviderDetailsStructure>();
+            List<CarPool.PoolProviderDetailsStructure> rideList = poolProviderDetails.getList();
             if(rideList.Count > 0)
             {
                 foreach (CarPool.PoolProviderDetailsStructure ride in rideList)
                 {
-                    showAvailablePools. displayRiders(ride);
+                    showAvailablePools.displayRiders(ride);
                 }
             } else
             {

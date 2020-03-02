@@ -17,8 +17,6 @@ namespace CarPool
             List<int> indexOfAvailabePool = new List<int>();
             for (int i = 0; i < poolProviderDetailsList.Count; i++)
             {
-                Console.WriteLine("Got {0}",poolProviderDetailsList[i].Vehicle);
-                Console.WriteLine("Got1 {0}", vehicleDetailsList[0].Id);
                 if (poolProviderDetailsList[i].Source.ToLower() == source.ToLower() && poolProviderDetailsList[i].Destination.ToLower() == destination.ToLower() && vehicleDetailsList.Find(x => x.Id.Equals(poolProviderDetailsList[i].Vehicle)).SeatsAvailable > 0 && (vehicleDetailsList.Find(x => x.Id.Equals(poolProviderDetailsList[i].Vehicle)).SeatsAvailable - poolProviderDetailsList[i].Riders.Count > 0))
                 {
                     availablePools = availablePools + 1;
@@ -54,14 +52,13 @@ namespace CarPool
 
         public void displayRiders(PoolProviderDetailsStructure poolProviderDetails)
         {
-            Console.WriteLine("\nSource:{0}\n Destination:{1}\n Type of Vehicle:{2}\n Seats Available:{3}\n Name: {4}\n Phone:{5}\n Gender:{6}\n", poolProviderDetails.Source, poolProviderDetails.Destination, vehicleDetailsList.Find(x => x.Id.Equals(poolProviderDetails.Vehicle)).TypeOfVehicle == 2 ? "Two Wheeler" : "Four Wheeler", vehicleDetailsList.Find(x => x.Id.Equals(poolProviderDetails.Vehicle)).SeatsAvailable - poolProviderDetails.Riders.Count, poolProviderDetails.Name, poolProviderDetails.Phone, poolProviderDetails.Gender);
+            Console.WriteLine("\n Source:{0}\n Destination:{1}\n Type of Vehicle:{2}\n Seats Available:{3}\n Name: {4}\n Phone:{5}\n Gender:{6}\n", poolProviderDetails.Source, poolProviderDetails.Destination, vehicleDetailsList.Find(x => x.Id.Equals(poolProviderDetails.Vehicle)).TypeOfVehicle == 2 ? "Two Wheeler" : "Four Wheeler", vehicleDetailsList.Find(x => x.Id.Equals(poolProviderDetails.Vehicle)).SeatsAvailable - poolProviderDetails.Riders.Count, poolProviderDetails.Name, poolProviderDetails.Phone, poolProviderDetails.Gender);
             if (poolProviderDetails.Riders.Count > 0)
             {
                 Console.WriteLine("Riders:");
                 foreach (int rider in poolProviderDetails.Riders)
                 {
                     UserDetailsStructure user = userDetails.getUserDetails(rider);
-                    Console.WriteLine("Data {0} RIDER {1}", user, rider);
                     Console.WriteLine(" \n\tName: {0} \n\tPhone: {1} \n\tGender: {2}", user.Name, user.Phone, user.Gender);
                 }
             }
