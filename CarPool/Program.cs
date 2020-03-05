@@ -145,7 +145,7 @@ namespace CarPooling
 
         private static void requestRide()
         {
-            List<CarPool.PoolProviderDetailsStructure> poolPostList = poolProviderDetails.getList();
+            List<CarPool.PoolProviderDetails> poolPostList = poolProviderDetails.getList();
             if (poolPostList.Count > 0)
             {
                 Console.WriteLine("Source");
@@ -167,10 +167,10 @@ namespace CarPooling
 
         private static void showRides()
         {
-            List<CarPool.PoolProviderDetailsStructure> rideList = poolProviderDetails.getList();
+            List<CarPool.PoolProviderDetails> rideList = poolProviderDetails.getList();
             if(rideList.Count > 0)
             {
-                foreach (CarPool.PoolProviderDetailsStructure ride in rideList)
+                foreach (CarPool.PoolProviderDetails ride in rideList)
                 {
                     showAvailablePools.displayRiders(ride);
                 }

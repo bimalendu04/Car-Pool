@@ -6,32 +6,29 @@ namespace CarPool
 {
     public class UserDetailsList
     {
-        public static List<UserDetailsStructure> userList = new List<UserDetailsStructure>();
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Gender { get; set; }
+
+        public static List<UserDetailsList> userList = new List<UserDetailsList>();
 
         public int setDetails(string name, string phone, string gender)
         {
             int id = userList.Count;
-            userList.Add(new UserDetailsStructure { Id = id, Name = name, Phone = phone, Gender = gender });
+            userList.Add(new UserDetailsList { Id = id, Name = name, Phone = phone, Gender = gender });
             return id;
         }
 
-        public List<UserDetailsStructure> getUserList()
+        public List<UserDetailsList> getUserList()
         {
             return userList;
         }
 
-        public UserDetailsStructure getUserDetails(int id)
+        public UserDetailsList getUserDetails(int id)
         {
             return userList.Find(x => x.Id == id);
         }
         
-    }
-
-    public class UserDetailsStructure
-    {
-        public int Id;
-        public string Name;
-        public string Phone;
-        public string Gender;
     }
 }
